@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UNIZIK Philosophy Alumni</title>
+
+  <!-- Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root{
+      --primary:#002147; --primary-dark:#fff; --accent:#007C92; --light:#F5F5F5; --dark:#2E2E2E;
+      --text:#fff; --muted:#777; --glass: rgba(255,255,255,0.75);
+      --shadow: 0 6px 18px rgba(0,0,0,0.08); --radius:12px; --trans: 300ms cubic-bezier(.2,.9,.2,1);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;background:linear-gradient(180deg,#fbfbfb 0%, #f1f1f1 100%);color:var(--text);margin:0;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+    /* Header */
+    header{background:#002147;box-shadow:var(--shadow);position:sticky;top:0;z-index:999}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo img{height:44px;border-radius:6px;box-shadow:0 4px 10px rgba(140,21,21,0.12)}
+    .logo h1{font-size:18px;color:#fff;margin:0;font-weight:700}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;align-items:center}
+    nav a{color:var(--text);text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px;transition:var(--trans)}
+    nav a:hover, nav a:focus{color:var(--primary);background:#ffd700(140,21,21,0.03)}
+    /* Dropdown submenu for About */
+    nav li{position:relative}
+    .submenu{display:none;position:absolute;top:100%;left:0;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.08);border-radius:8px;padding:8px 0;min-width:200px;z-index:50}
+    .submenu a{display:block;padding:8px 14px;color:var(--dark);font-weight:600}
+    .submenu a:hover{background:rgba(140,21,21,0.03);color:var(--primary)}
+    nav li.has-submenu:hover > .submenu{display:block}
+    .auth-actions{display:flex;gap:10px;align-items:center}
+    .btn{background:var(--primary);color:#fff;padding:8px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700;transition:var(--trans)}
+    .btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary)}
+    /* Login/Register specific overrides */
+    #loginBtn, #registerBtn {
+      background: #ffd700 !important;
+      color: rgba(0,0,0,0.87) !important;
+      border-color: transparent !important;
+    }
+    #loginBtn:hover, #registerBtn:hover {
+      background: #e6bf00 !important;
+      color: rgba(0,0,0,0.87) !important;
+    }
+    .mobile-toggle{display:none;background:none;border:0;font-size:20px;color:var(--primary);cursor:pointer}
+
+    /* Bento / compact menu */
+  .bento { position: relative; z-index:1200; }
+  .bento-btn{ background: transparent; border: 0; color: var(--text); font-size:18px; cursor:pointer; padding:6px 8px; border-radius:8px; z-index:1201 }
+  .bento-btn:focus{ outline:2px solid rgba(255,255,255,0.12) }
+  .bento-menu{ display: none; position:absolute; right:0; top:110%; background:#002147; color:var(--text); box-shadow:0 8px 24px rgba(0,0,0,0.12); border-radius:8px; min-width:180px; padding:8px 0; z-index:1202; transform-origin:top right; transform: translateY(-6px) scale(0.98); opacity:0; transition: transform 180ms ease, opacity 180ms ease }
+    .bento-menu a{ display: block; padding:8px 12px; color:var(--dark); font-weight:700 }
+    .bento-menu a:hover{ background:rgba(0,0,0,0.03); color:var(--primary) }
+    .bento.open > .bento-menu{ display: block; transform: translateY(0) scale(1); opacity:1 }
+
+    /* Slight spacing so auth buttons and bento icon don't crowd on small widths */
+    .header-inner > .bento{ margin-left:10px }
+
+    /* Visually hidden helper for accessibility */
+    .sr-only{ position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden }
+
+    /* Hero Carousel */
+    .hero{position:relative;height:86vh;min-height:700px;display:flex;align-items:center;overflow:hidden}
+    .slides{position:relative;width:100%;height:100%}
+    .slide{position:absolute;inset:0;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;padding:40px;transition:opacity 900ms ease, transform 900ms ease;opacity:0;transform:scale(1.03)}
+    .slide.active{opacity:1;transform:scale(1)}
+    .slide .backdrop{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45));}
+    .hero-inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:980px}
+    .hero h2{font-size:2.6rem;margin-bottom:12px;letter-spacing:0.4px}
+    .hero p{font-size:1.05rem;margin-bottom:18px;color:rgba(255,255,255,0.92)}
+    .hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .hero .cta-row .btn.secondary{background:transparent;border:2px solid #ffd700(255,255,255,0.18);color:#fff}
+
+    .carousel-controls{position:absolute;top:50%;left:12px;right:12px;display:flex;justify-content:space-between;align-items:center;z-index:3;transform:translateY(-50%)}
+    .carousel-controls .ctrl{background:rgba(0,0,0,0.3);color:#fff;padding:8px 10px;border-radius:999px;cursor:pointer;backdrop-filter: blur(4px)}
+    .carousel-indicators{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+    .indicator{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.35);cursor:pointer}
+    .indicator.active{background:#ffd700;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+
+    /* Preview cards removed per user request */
+
+    /* Section styles */
+    section{padding:56px 0;background:transparent}
+    .section-title{text-align:center;color:var(--primary);font-size:1.9rem;margin-bottom:20px}
+    .grid{display:grid;gap:20px}
+    .card{background:#fff;border-radius:12px;padding:18px;box-shadow:var(--shadow);transition:transform var(--trans);color:var(--dark)}
+    .card:hover{transform:translateY(-6px)}
+
+    /* President desk */
+    .president-desk{display:grid;grid-template-columns:260px 1fr;gap:20px;align-items:center}
+    .president-photo{width:240px;height:240px;border-radius:12px;object-fit:cover;box-shadow:var(--shadow)}
+    .president-quote{font-size:1rem;color:#333;line-height:1.6}
+    .president-sign{margin-top:14px;font-weight:700;color:var(--primary)}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;padding:10px 0}
+
+    /* Directory */
+    .directory-preview{padding:28px;background:#fff;border-radius:12px;box-shadow:var(--shadow)}
+    .filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:14px}
+    .filters label{font-weight:700;color:var(--muted);font-size:0.9rem}
+    select,input{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6}
+    .alumni-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+    .alumni-card{display:flex;gap:12px;align-items:flex-start;background:linear-gradient(180deg,#fff,#fbfbfb);padding:12px;border-radius:10px}
+    .alumni-card img{width:72px;height:72px;border-radius:8px;object-fit:cover}
+    .alumni-meta h4{margin:0 0 6px 0;color:var(--primary);font-size:1rem}
+    .meta-small{font-size:0.87rem;color:var(--muted)}
+
+    /* Events */
+    .events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .event-card .event-date{display:inline-block;background:#002147;color:#fff;padding:6px 10px;border-radius:8px;font-weight:700}
+
+    /* Executives / Trustees */
+    .alumni-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+    .person-card{padding:40px;background:linear-gradient(180deg,#002147,#002147);border-radius:10px;text-align:center}
+    .person-card img{width:200px;height:200px;border-radius:12px;object-fit:cover;margin-bottom:10px}
+
+    /* Careers */
+    .jobs-list{display:grid;gap:12px}
+    .job{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;border-radius:10px;background:#fff;box-shadow:var(--shadow)}
+    .job .meta{color:var(--muted);font-size:0.9rem}
+
+    /* Forum */
+    .callout{background:linear-gradient(90deg,#fff7e6,#fff);border-left:4px solid #ffd54a;padding:12px;border-radius:8px;margin-bottom:14px}
+    .posts{display:grid;gap:12px}
+    .post{background:#fff;padding:14px;border-radius:10px;box-shadow:var(--shadow)}
+
+  /* Forum highlights slider */
+  .highlights { display:block; margin-bottom:18px; }
+  .highlights-viewport{ position:relative; overflow:hidden; border-radius:12px }
+  .highlights-track{ display:flex; transition:transform 360ms cubic-bezier(.2,.9,.2,1); will-change:transform }
+  .highlight-card{ min-width:100%; box-shadow:var(--shadow); background:#fff; padding:14px; display:flex; gap:12px; align-items:flex-start }
+  .highlight-meta{ font-size:0.9rem; color:var(--muted); margin-bottom:6px }
+  .highlight-title{ margin:0 0 6px 0; color:var(--primary); font-size:1.05rem }
+  .highlight-excerpt{ margin:0; color:var(--dark) }
+  .highlights-controls{ display:flex; justify-content:space-between; align-items:center; margin-top:8px }
+  .hl-btn{ background:transparent;border:0;color:var(--primary);cursor:pointer;font-weight:700;padding:8px;border-radius:8px }
+  .hl-indicators{ display:flex; gap:6px; align-items:center }
+  .hl-ind{ width:10px; height:10px; border-radius:50%; background:rgba(0,0,0,0.08); cursor:pointer }
+  .hl-ind.active{ background:var(--primary) }
+  @media (min-width:900px){ .highlight-card{ padding:18px } }
+
+    /* Footer */
+    footer{background:#002147;color:#fff;padding:36px 0;margin-top:24px}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:9999}
+    .modal{background:#fff;padding:20px;border-radius:12px;width:100%;max-width:520px;box-shadow:0 12px 40px rgba(0,0,0,0.25)}
+    .modal h3{margin-top:0}
+    .form-row{display:flex;gap:8px}
+    .form-row input{flex:1;padding:10px;border-radius:8px;border:1px solid #eee}
+
+    /* small */
+    .muted{color:var(--muted);font-size:0.95rem}
+    .small{font-size:0.85rem;color:var(--muted)}
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
+    .reveal { opacity: 0; transform: translateY(12px); will-change: opacity, transform; }
+    .reveal.visible { animation: fadeUp .6s cubic-bezier(.2,.9,.2,1) both; }
+
+    /* Hero entrance when slide becomes active */
+    .slide.active .hero-inner { animation: fadeUp .85s cubic-bezier(.2,.9,.2,1) both; }
+
+    /* Button hover polish */
+    .btn { transition: transform .18s var(--trans), box-shadow .18s var(--trans), background .18s var(--trans); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+
+    /* subtle indicator pulse */
+    .indicator.active { animation: pulse 2200ms ease-in-out infinite; }
+
+    @media (max-width:980px){
+      .president-desk{grid-template-columns:1fr; text-align:left}
+      .president-photo{margin:0 auto}
+    }
+    @media (max-width:880px){
+      nav ul{display:none}
+      .mobile-toggle{display:block}
+      .header-inner{gap:12px}
+    }
+    @media (max-width:620px){
+      .hero h2{font-size:1.8rem}
+      .hero p{font-size:0.95rem}
+    }
+    /* Forum layout styles */
+    .forum-grid{display:grid;grid-template-columns:300px 1fr}
+    .categories{position:sticky;top:92px}
+    .category-list{display:flex;flex-direction:column;gap:6px}
+    .category-item{padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:700;color:var(--muted)}
+    .category-item.active{background:linear-gradient(90deg,#fff,#fbfbfb);box-shadow:var(--shadow);color:var(--primary)}
+    .forum-main .posts{display:grid;gap:12px}
+
+    /* Forum modal overrides (uses existing modal styles) */
+    #forumModalBackdrop{display:flex;align-items:center;justify-content:center}
+
+    @media (max-width:900px){
+      .forum-grid{grid-template-columns:1fr;}
+      .categories{order:2;position:relative;top:auto;margin-top:10px}
+      .forum-main{order:1}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+          <img src="data:image/png+xml;base64,public/img==" alt="logo">
+          <h1>ALUMNI ASSOCIATION OF DEPARTMENT OF PHILOSOPHY, UNIZIK</h1>
+        </div>
+
+        <!-- desktop nav -->
+        <nav>
+              <ul>
+                <!-- primary nav items (kept empty because bento contains links for compact view) -->
+              </ul>
+        </nav>
+
+        <div class="auth-actions">
+          <button id="userBtn" class="btn btn-outline" style="display:none"></button>
+          <button id="loginBtn" class="btn btn-outline">Login</button>
+          <button id="registerBtn" class="btn">Register</button>
+          <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+        </div>
+
+        <!-- Move bento to the end of the header so the icon appears after auth actions -->
+        <div class="bento" aria-haspopup="true">
+          <button class="bento-btn" aria-expanded="false" aria-controls="bentoMenu" title="Menu"> <i class="fas fa-th-large"></i> </button>
+          <ul class="bento-menu" id="bentoMenu">
+            <li><a href="#hero">Home</a></li>
+            <li class="bento-has-submenu">
+              <button class="bento-sub-toggle" aria-expanded="false">About <i class="fas fa-caret-right" style="margin-left:8px;font-size:0.9em"></i></button>
+              <ul class="bento-submenu">
+                <li><a href="#executives">Executives</a></li>
+                <li><a href="#trustees">Board of Trustees</a></li>
+              </ul>
+            </li>
+            <li><a href="#directory">Directory</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#mentorship">Mentorship</a></li>
+            <li><a href="#forum">Forum</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO / Carousel (4 slides) -->
+  <section id="hero" class="hero">
+    <div class="slides">
+      <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1573164713714-3700ff10d0b3?auto=format&fit=crop&w=1600&q=80')">
+        <div class="backdrop"></div>
+        <div class="hero-inner container">
+          <h2>Welcome to the Alumni Association of the Department of Philosophy</h2>
+          <p>Connect with fellow alumni, discover career paths, attend events, and mentor the next generation.</p>
+          <div class="cta-row">
+            <button class="btn" id="joinNowBtn">Join Now</button>
+            <a class="btn secondary" href="#directory" style="color:hsl(51, 100%, 1%);text-decoration:none">Explore Directory</a>
+            <!-- From the Desk CTA removed from hero; section remains after hero -->
+          </div>
+        </div>
+      </div>
+
+          <!-- QUICK VIEW MODAL (reusable) -->
+          <div class="modal-backdrop" id="quickviewBackdrop" aria-hidden="true" style="display:none">
+            <div class="modal" role="dialog" aria-modal="true" aria-labelledby="quickviewTitle">
+              <h3 id="quickviewTitle">Preview</h3>
+              <div id="quickviewBody"></div>
+              <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+                <button class="btn btn-outline" id="quickviewClose">Close</button>
+                <a class="btn" id="quickviewMore" href="#">See more</a>
+              </div>
+            </div>
+          </div>
+
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80')">
+        <div class="backdrop"></div>
+        <div class="hero-inner container">
+          <h2>Mentorship & Careers</h2>
+          <p>Sign up to apply for mentorships, browse exclusive job postings, and access career resources.</p>
+          <div class="cta-row">
+            <a class="btn" href="#mentorship">Apply for Mentorship</a>
+            <a class="btn secondary" href="#careers" style="color:#fff;text-decoration:none">See Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1600&q=80')">
+        <div class="backdrop"></div>
+        <div class="hero-inner container">
+          <h2>Events & Webinars</h2>
+          <p>Attend workshops and reunions — keep an eye on our events calendar for upcoming in-person and virtual sessions.</p>
+          <div class="cta-row">
+            <a class="btn" href="#events">View Events</a>
+            <a class="btn secondary" href="#forum" style="color:#fff;text-decoration:none">Join Discussion</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80')">
+        <div class="backdrop"></div>
+        <div class="hero-inner container">
+          <h2>Alumni Stories</h2>
+          <p>Read spotlights and achievements from our distinguished alumni network across the world.</p>
+          <div class="cta-row">
+            <a class="btn" href="#news">Latest News</a>
+            <a class="btn secondary" href="#executives" style="color:#fff;text-decoration:none">Meet the Team</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- controls -->
+      <div class="carousel-controls container">
+        <div class="ctrl prev" id="prevSlide"><i class="fas fa-chevron-left"></i></div>
+        <div class="ctrl next" id="nextSlide"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      <div class="carousel-indicators" id="indicators">
+        <div class="indicator active" data-i="0"></div>
+        <div class="indicator" data-i="1"></div>
+        <div class="indicator" data-i="2"></div>
+        <div class="indicator" data-i="3"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FROM THE DESK OF THE PRESIDENT -->
+  <section id="president">
+    <div class="container">
+      <div class="section-title">From the Desk of the National Alumni President</div>
+      <div class="card president-desk">
+        <img class="president-photo" src="https://randomuser.me/api/portraits/men/12.jpg" alt="President - Dr. Chidiebere Obi">
+        <div>
+          <div class="president-quote">
+            <p>Dear colleagues and friends,</p>
+            <p>Welcome to the UNIZIK Philosophy Alumni Network. It is with deep gratitude and excitement that I invite you to explore our renewed digital home — a space designed to reconnect, collaborate, and create opportunities for intellectual and professional growth. Whether you are a recent graduate, a seasoned academic, or a friend of the department, this network is for you.</p>
+            <p>We are committed to supporting mentorship, fostering research conversations — especially on issues that matter to our communities — and amplifying alumni achievements worldwide. Please engage with our forums, attend events, and consider mentoring a student. Together we will strengthen the ties that make our department a vibrant intellectual community.</p>
+            <p class="president-sign">Warm regards,<br>Dr. Chidiebere Obi<br>President, UNIZIK Philosophy Alumni Network</p>
+          </div>
+          <div style="margin-top:12px">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">About Us</div>
+      <div class="card" style="text-align:left">
+        <p><strong>UNIZIK Philosophy Alumni</strong> connects graduates of the Department of Philosophy, Nnamdi Azikiwe University (UNIZIK). Our mission is to support intellectual exchange, professional development, and mentorship — building a lifelong community to uplift students and alumni through events, job opportunities, and collaborative projects.</p>
+        <p class="small muted" style="margin-top:10px">History: The department has a long tradition of scholarship. (Replace this line with your full history content when ready.)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTORY -->
+  <section id="directory">
+    <div class="container">
+      <div class="section-title">Find Alumni - Directory</div>
+      <div class="directory-preview">
+        <div class="filters">
+          <div>
+            <label>Specialization</label>
+            <select id="f-specialization"><option value="">Any</option><option>Ethics</option><option>Metaphysics</option><option>Logic</option><option>African Philosophy</option></select>
+          </div>
+          <div>
+            <label>Graduation Year</label>
+            <select id="f-year"><option value="">Any</option><option>2020-2023</option><option>2010-2019</option><option>2000-2009</option></select>
+          </div>
+          <div>
+            <label>Location</label>
+            <select id="f-location"><option value="">Any</option><option>Lagos</option><option>Abuja</option><option>International</option></select>
+          </div>
+          <div>
+            <label>Industry</label>
+            <select id="f-industry"><option value="">Any</option><option>Education</option><option>Technology</option><option>Government</option><option>Non-Profit</option></select>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px">
+          <button class="btn" id="applyFilter">Search Alumni</button>
+          <div class="muted small">Tip: Guests can browse — register to contact alumni.</div>
+        </div>
+
+        <div class="alumni-list" id="alumniList">
+          <!-- sample alumni items (keeps the three from your original HTML) -->
+          <div class="alumni-card card">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="">
+            <div class="alumni-meta">
+              <h4>Chinedu Okoro</h4>
+              <div class="meta-small">M.A. Ethics, 2018 • Education Consultant • Lagos, Nigeria</div>
+            </div>
+          </div>
+
+          <div class="alumni-card card">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80" alt="">
+            <div class="alumni-meta">
+              <h4>Amina Yusuf</h4>
+              <div class="meta-small">Ph.D. African Philosophy, 2015 • University Professor • Abuja, Nigeria</div>
+            </div>
+          </div>
+
+          <div class="alumni-card card">
+            <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=600&q=80" alt="">
+            <div class="alumni-meta">
+              <h4>Emeka Nwosu</h4>
+              <div class="meta-small">B.A. Logic, 2020 • Software Developer • Berlin, Germany</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREERS -->
+  <section id="careers">
+    <div class="container">
+      <div class="section-title">Career Opportunities</div>
+      <div class="card">
+        <p class="muted">Employers and alumni post roles here. Guests see listings; registered users can apply directly.</p>
+        <div class="jobs-list" style="margin-top:14px">
+          <div class="job">
+            <div>
+              <strong>Research Fellow - Ethics in Tech</strong>
+              <div class="meta small muted">Full-time • Remote • Posted 5 days ago</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-outline job-apply" data-job="Research Fellow">Apply</button>
+            </div>
+          </div>
+
+          <div class="job">
+            <div>
+              <strong>Lecturer (Philosophy)</strong>
+              <div class="meta small muted">Part-time • UNIZIK • Posted 12 days ago</div>
+            </div>
+            <div>
+              <button class="btn btn-outline job-apply" data-job="Lecturer (Philosophy)">Apply</button>
+            </div>
+          </div>
+
+          <div class="job">
+            <div>
+              <strong>Program Coordinator - Alumni Relations</strong>
+              <div class="meta small muted">Full-time • Abuja • Posted 2 days ago</div>
+            </div>
+            <div>
+              <button class="btn btn-outline job-apply" data-job="Program Coordinator">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- EVENTS (now 4 upcoming) -->
+  <section id="events">
+    <div class="container">
+      <div class="section-title">Upcoming Events</div>
+      <div class="events-grid">
+        <div class="card event-card">
+          <div class="event-date">Nov 28, 2025 • UNIZIK</div>
+          <h3 style="margin-top:10px">Philosophy & AI Symposium</h3>
+          <p class="muted">A one-day symposium exploring ethical design, algorithmic bias, and normative theory for AI practitioners and philosophers. Hybrid (UNIZIK / Zoom).</p>
+        </div>
+
+        <div class="card event-card">
+          <div class="event-date">Jan 20, 2026 • UNIZIK</div>
+          <h3 style="margin-top:10px">Alumni Homecoming 2026</h3>
+          <p class="muted">Reconnect with classmates and faculty — lectures, panels, and a keynote on 'Philosophy in Public Life'.</p>
+        </div>
+
+        <div class="card event-card">
+          <div class="event-date">Mar 12, 2026 • Zoom</div>
+          <h3 style="margin-top:10px">Mentorship Workshop: Philosophy to Practice</h3>
+          <p class="muted">Practical sessions for translating philosophical training into careers in policy, education, and tech. Online and in-person breakout rooms.</p>
+        </div>
+
+        <div class="card event-card">
+          <div class="event-date">May 15, 2026 • UNIZIK / Hybrid</div>
+          <h3 style="margin-top:10px">Annual Conference on African Philosophy</h3>
+          <p class="muted">Call for papers and panels on contemporary African thought, decolonial philosophies, and community-engaged research.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- NEWS  -->
+  <section id="news">
+    <div class="container">
+      <div class="section-title">Latest News</div>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+
+        <div class="card news-card">
+          <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1200&q=60" style="width:100%;height:150px;object-fit:cover;border-radius:8px" alt="">
+          <h4 style="margin-top:10px">UNIZIK Launches Philosophy Research Fellowship</h4>
+          <p class="muted small">A new fellowship supporting early-career researchers working on ethics, African philosophy, and philosophy of technology has been announced. Applications open Nov 2025.</p>
+        </div>
+
+        <div class="card news-card">
+          <img src="https://images.unsplash.com/photo-1536305030018-1f4e4f0899ae?auto=format&fit=crop&w=1200&q=60" style="width:100%;height:150px;object-fit:cover;border-radius:8px" alt="">
+          <h4 style="margin-top:10px">Call for Papers: Annual Conference on African Philosophy</h4>
+          <p class="muted small">Organizers request submissions on decolonial methodologies, indigenous knowledge systems, and contemporary African thought. Deadline: Jan 15, 2026.</p>
+        </div>
+
+        <div class="card news-card">
+          <img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=1200&q=60" style="width:100%;height:150px;object-fit:cover;border-radius:8px" alt="">
+          <h4 style="margin-top:10px">Alumni Spotlight: Dr. Funmi Adebayo</h4>
+          <p class="muted small">Dr. Adebayo discusses community-focused research and new pedagogies in ethics. Her interview highlights paths from scholarship to public engagement.</p>
+        </div>
+
+        <div class="card news-card">
+          <img src="https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=1200&q=60" style="width:100%;height:150px;object-fit:cover;border-radius:8px" alt="">
+          <h4 style="margin-top:10px">New Centre for Philosophy & Public Policy</h4>
+          <p class="muted small">The department announced plans to convene cross-disciplinary projects on ethics and governance. The centre will host policy fellowships and public lectures.</p>
+        </div>
+
+        <div class="card news-card">
+          <img src="https://images.unsplash.com/photo-1526244434298-88fcbcb066b5?auto=format&fit=crop&w=1200&q=60" style="width:100%;height:150px;object-fit:cover;border-radius:8px" alt="">
+          <h4 style="margin-top:10px">Workshop: Ethics of AI for Humanitarian Practice</h4>
+          <p class="muted small">A two-day workshop for researchers and practitioners covering ethical impact assessment, data governance, and community consent. Registration opens soon.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FORUM -->
+  <section id="forum">
+    <div class="container">
+      <div class="section-title">Forum</div>
+
+      <div class="forum-grid" style="gap:20px;align-items:start">
+        <!-- Categories sidebar (collapses on small screens) -->
+        <aside class="categories card" style="padding:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <h4 style="margin:0">Categories</h4>
+            <button class="btn btn-outline create-category-btn" id="openCreateCategory">New</button>
+          </div>
+          <div id="categoryList" class="category-list" aria-live="polite"></div>
+          <div class="small muted" style="margin-top:12px">Tap a category to filter threads. Create your own category anytime.</div>
+        </aside>
+
+        <!-- Main forum area -->
+        <main class="forum-main">
+          <div class="callout">
+            <strong>Note:</strong> Guests can read topics. You must register and login to post replies or start new threads.
+          </div>
+
+          <div class="forum-controls" style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
+            <button class="btn" id="newThreadBtn">Start New Thread</button>
+            <div class="small muted">Example threads: Philosophy & Tech, Career Advice, Research Opportunities</div>
+          </div>
+
+          <!-- Forum highlights: trending topics slider -->
+          <div class="highlights" id="forumHighlights" aria-label="Trending discussion highlights">
+            <div class="highlights-viewport" id="hlViewport">
+              <div class="highlights-track" id="hlTrack">
+                <!-- populated by JS -->
+              </div>
+            </div>
+            <div class="highlights-controls">
+              <div>
+                <button class="hl-btn" id="hlPrev" aria-label="Previous highlight">◀</button>
+                <button class="hl-btn" id="hlNext" aria-label="Next highlight">▶</button>
+              </div>
+              <div class="hl-indicators" id="hlIndicators" role="tablist" aria-label="Highlights indicators"></div>
+            </div>
+          </div>
+
+          <div class="posts" id="postsList">
+            <div class="post card" data-category="Ethics">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h4 style="margin:0">How do we teach ethics to students entering tech?</h4>
+                <div class="small muted" style="font-size:0.8rem">Category: <strong>Ethics</strong></div>
+              </div>
+              <div class="small muted">by Dr. A. Yusuf • 3 comments</div>
+              <p style="margin-top:10px">Let's discuss content, pedagogy and practical case studies useful for undergraduates going into tech.</p>
+            </div>
+
+            <div class="post card" data-category="Careers">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h4 style="margin:0">Postgraduate Funding Opportunities</h4>
+                <div class="small muted" style="font-size:0.8rem">Category: <strong>Careers</strong></div>
+              </div>
+              <div class="small muted">by Chinedu Okoro • 1 comment</div>
+              <p style="margin-top:10px">Share scholarship links and advice for PhD applicants.</p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- Forum modals: Create Category + New Thread -->
+  <div class="modal-backdrop" id="forumModalBackdrop" aria-hidden="true" style="display:none;">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div id="forumModalContent">
+        <h3 id="forumModalTitle">Create Category</h3>
+        <div id="forumModalBody">
+          <div id="createCategoryForm">
+            <input id="newCategoryName" placeholder="Category name" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:10px">
+            <div style="display:flex;gap:8px;justify-content:flex-end">
+              <button class="btn btn-outline" id="cancelCreateCategory">Cancel</button>
+              <button class="btn" id="confirmCreateCategory">Create</button>
+            </div>
+          </div>
+
+          <div id="newThreadForm" style="display:none">
+            <input id="threadTitle" placeholder="Thread title" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px">
+            <select id="threadCategory" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px"></select>
+            <textarea id="threadBody" rows="5" placeholder="Write your thread..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px"></textarea>
+            <div style="display:flex;gap:8px;justify-content:flex-end">
+              <button class="btn btn-outline" id="cancelNewThread">Cancel</button>
+              <button class="btn" id="confirmNewThread">Post Thread</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">Contact</div>
+      <div class="card" style="display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+        <div style="flex:1;min-width:240px">
+          <h4>Get in touch</h4>
+          <p class="muted">Email: alumni@unizik.edu.ng • Phone: +234 803 000 0000</p>
+        </div>
+        <div style="min-width:260px">
+          <label class="small muted">Subscribe to newsletter</label>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <input id="newsletterEmail" placeholder="Your email" style="padding:10px;border-radius:8px;border:1px solid #eaeaea;flex:1">
+            <button class="btn" id="subscribeBtn">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Alumni Association of Department of Philosophy</h4>
+          <p class="muted small">Connecting philosophy graduates worldwide for professional development, intellectual exchange, and community building.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul style="list-style:none;padding:0;margin:0">
+            <li><a href="#directory" style="color:#fff">Alumni Directory</a></li>
+            <li><a href="#events" style="color:#fff">Events Calendar</a></li>
+            <li><a href="#careers" style="color:#fff">Job Board</a></li>
+            <li><a href="#mentorship" style="color:#fff">Mentorship</a></li>
+            <li><a href="#forum" style="color:#fff">Discussion Forums</a></li>
+            <!-- 'From the Desk' moved under hero; not linked in footer -->
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul style="list-style:none;padding:0;margin:0">
+            <li><a href="#" style="color:#fff">Career Services</a></li>
+            <li><a href="#" style="color:#fff">Giving Opportunities</a></li>
+            <li><a href="#" style="color:#fff">Photo Gallery</a></li>
+            <li><a href="#" style="color:#fff">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:18px;color:rgba(255,255,255,0.7)" class="small">&copy; <span id="yearTxt"></span> DesignMix — All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- AUTH / REGISTER MODAL -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div id="modalContent">
+        <h3 id="modalTitle">Register</h3>
+        <p class="small muted" id="modalMsg">Create an account to unlock posting, applying for mentorship, and applying to jobs.</p>
+
+        <div id="registerForm">
+          <div style="margin-bottom:10px"><input id="regName" placeholder="Your full name" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee"></div>
+          <div style="margin-bottom:10px"><input id="regEmail" placeholder="Email address" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee"></div>
+          <div style="margin-bottom:10px"><input id="regPassword" placeholder="Password" type="password" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee"></div>
+          <div style="display:flex;gap:8px;justify-content:flex-end">
+            <button class="btn btn-outline" id="closeModal">Cancel</button>
+            <button class="btn" id="confirmRegister">Create Account</button>
+          </div>
+        </div>
+
+        <div id="loginForm" style="display:none">
+          <div style="margin-bottom:10px"><input id="loginEmail" placeholder="Email" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee"></div>
+          <div style="margin-bottom:10px"><input id="loginPassword" placeholder="Password" type="password" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee"></div>
+          <div style="display:flex;gap:8px;justify-content:flex-end">
+            <button class="btn btn-outline" id="backToRegister">Back</button>
+            <button class="btn" id="confirmLogin">Login</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Helper: element selector
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => Array.from(document.querySelectorAll(s));
+
+    // Year in footer
+    document.getElementById('yearTxt').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle - small screens
+    const mobileToggle = $('#mobileToggle');
+    mobileToggle.addEventListener('click', () => {
+      const ul = document.querySelector('nav ul');
+      ul.style.display = ul.style.display === 'flex' ? 'none' : 'flex';
+      ul.style.flexDirection = 'column';
+      ul.style.background = '#fff';
+      ul.style.position = 'absolute';
+      ul.style.right = '20px';
+      ul.style.top = '64px';
+      ul.style.padding = '12px';
+      ul.style.boxShadow = 'var(--shadow)';
+    });
+
+    // Mobile: enable tapping parent menu to toggle submenu
+    (function setupSubmenuToggle(){
+      const aboutParent = document.querySelector('nav li.has-submenu');
+      if(!aboutParent) return;
+      // Add a toggle button for small screens
+      const toggleBtn = document.createElement('button');
+      toggleBtn.setAttribute('aria-expanded','false');
+      toggleBtn.className = 'submenu-toggle';
+      toggleBtn.style.border = '0';
+      toggleBtn.style.background = 'transparent';
+      toggleBtn.style.marginLeft = '6px';
+      toggleBtn.style.cursor = 'pointer';
+      toggleBtn.innerHTML = '<i class="fas fa-caret-down"></i>';
+      aboutParent.firstElementChild.appendChild(toggleBtn);
+
+      toggleBtn.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const submenu = aboutParent.querySelector('.submenu');
+        const isShown = submenu.style.display === 'block';
+        submenu.style.display = isShown ? 'none' : 'block';
+        toggleBtn.setAttribute('aria-expanded', String(!isShown));
+      });
+
+      // Close submenu when clicking elsewhere on small screens
+      document.addEventListener('click', (e)=>{
+        if(window.innerWidth > 880) return; // desktop uses hover
+        const submenu = aboutParent.querySelector('.submenu');
+        if(!aboutParent.contains(e.target)) submenu.style.display = 'none';
+      });
+    })();
+
+    // Bento submenu toggle for compact menu (mobile / small screens)
+    (function setupBentoSubmenu(){
+      const toggles = document.querySelectorAll('.bento .bento-sub-toggle');
+      if(!toggles || toggles.length === 0) return;
+      toggles.forEach(btn => {
+        btn.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          const submenu = btn.nextElementSibling; // .bento-submenu
+          if(!submenu) return;
+          const isShown = submenu.style.display === 'block';
+          submenu.style.display = isShown ? 'none' : 'block';
+          btn.setAttribute('aria-expanded', String(!isShown));
+        });
+      });
+
+      // Close bento submenus when clicking elsewhere on small screens
+      document.addEventListener('click', (e)=>{
+        if(window.innerWidth > 880) return;
+        document.querySelectorAll('.bento .bento-submenu').forEach(sm => sm.style.display = 'none');
+        document.querySelectorAll('.bento .bento-sub-toggle').forEach(bt => bt.setAttribute('aria-expanded','false'));
+      });
+    })();
+
+    /* -----------------------
+       Quick-view modal for preview cards
+    -------------------------*/
+    (function quickView(){
+      const backdrop = document.getElementById('quickviewBackdrop');
+      const body = document.getElementById('quickviewBody');
+      const title = document.getElementById('quickviewTitle');
+      const closeBtn = document.getElementById('quickviewClose');
+      const moreLink = document.getElementById('quickviewMore');
+      let lastFocused = null;
+
+      function focusable(root){ return Array.from(root.querySelectorAll('a,button,input,textarea,[tabindex]:not([tabindex="-1"])')).filter(n=>!n.hasAttribute('disabled')); }
+
+      function open(t){
+        lastFocused = document.activeElement;
+        backdrop.style.display = 'flex'; backdrop.setAttribute('aria-hidden','false');
+        // populate quickview body with t (HTML)
+        body.innerHTML = t.content || '<p class="small muted">No preview available.</p>';
+        title.textContent = t.title || 'Preview';
+        moreLink.href = '#' + (t.id || 'hero');
+        // focus trap
+        const f = focusable(backdrop);
+        (f[0] || closeBtn).focus();
+        document.addEventListener('keydown', trap);
+      }
+
+      function close(){ backdrop.style.display='none'; backdrop.setAttribute('aria-hidden','true'); if(lastFocused) lastFocused.focus(); document.removeEventListener('keydown', trap); }
+
+      function trap(e){
+        if(e.key === 'Escape'){ close(); return; }
+        if(e.key === 'Tab'){
+          const f = focusable(backdrop);
+          if(f.length === 0) return;
+          const idx = f.indexOf(document.activeElement);
+          if(e.shiftKey){ if(idx === 0){ e.preventDefault(); f[f.length-1].focus(); } }
+          else { if(idx === f.length-1){ e.preventDefault(); f[0].focus(); } }
+        }
+      }
+
+      closeBtn.addEventListener('click', close);
+      backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) close(); });
+
+      // wire buttons
+      document.addEventListener('click', (e)=>{
+        const b = e.target.closest('.quickview-btn');
+        if(!b) return;
+        const targetId = b.dataset.target;
+        const section = document.getElementById(targetId);
+        if(!section){ alert('Preview not available'); return; }
+        // build small preview: take first 2 paragraphs or list items
+        let html = '';
+        const paras = Array.from(section.querySelectorAll('p'));
+        if(paras.length){ html += paras.slice(0,2).map(p=>`<p>${p.textContent}</p>`).join(''); }
+        else {
+          const lis = Array.from(section.querySelectorAll('li'));
+          if(lis.length) html += `<ul>${lis.slice(0,4).map(li=>`<li>${li.textContent}</li>`).join('')}</ul>`;
+        }
+        if(!html) html = '<p class="small muted">No preview content available.</p>';
+        open({ title: section.querySelector('.section-title') ? section.querySelector('.section-title').textContent : targetId, content: html, id: targetId });
+      });
+    })();
+
+    /* -----------------------
+       Simple client-side "auth"
+       - Stores a minimal user object in localStorage
+       - Used only to demo gated actions: apply to jobs, mentorship, forum posts
+    -------------------------*/
+    const modalBackdrop = $('#modalBackdrop');
+    const modalTitle = $('#modalTitle');
+    const loginBtn = $('#loginBtn');
+    const registerBtn = $('#registerBtn');
+    const closeModal = $('#closeModal');
+    const confirmRegister = $('#confirmRegister');
+    const confirmLogin = $('#confirmLogin');
+    const backToRegister = $('#backToRegister');
+    const registerForm = $('#registerForm');
+    const loginForm = $('#loginForm');
+    const userBtn = $('#userBtn');
+
+    function currentUser(){
+      try{
+        return JSON.parse(localStorage.getItem('unizik_user'));
+      }catch(e){ return null; }
+    }
+
+    function refreshAuthDisplay(){
+      const u = currentUser();
+      if(u){
+        loginBtn.style.display='none';
+        registerBtn.style.display='none';
+        userBtn.style.display='inline-block';
+        userBtn.textContent = `Hi, ${u.name.split(' ')[0]} ▾`;
+        userBtn.onclick = () => {
+          // quick logout
+          if(confirm('Logout?')){ localStorage.removeItem('unizik_user'); refreshAuthDisplay(); alert('You have been logged out'); }
+        };
+      }else{
+        loginBtn.style.display='inline-block';
+        registerBtn.style.display='inline-block';
+        userBtn.style.display='none';
+      }
+    }
+    refreshAuthDisplay();
+
+    // Open register modal
+    registerBtn.addEventListener('click', () => {
+      modalTitle.textContent = 'Register';
+      registerForm.style.display='block';
+      loginForm.style.display='none';
+      modalBackdrop.style.display='flex';
+    });
+
+    loginBtn.addEventListener('click', () => {
+      modalTitle.textContent = 'Login';
+      registerForm.style.display='none';
+      loginForm.style.display='block';
+      modalBackdrop.style.display='flex';
+    });
+
+    closeModal.addEventListener('click', ()=> modalBackdrop.style.display='none');
+    backToRegister.addEventListener('click', ()=> {
+      modalTitle.textContent='Register';
+      registerForm.style.display='block';
+      loginForm.style.display='none';
+    });
+
+    // Confirm register (very simple, no backend)
+    confirmRegister.addEventListener('click', () => {
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const pw = document.getElementById('regPassword').value.trim();
+      if(!name || !email || !pw){ alert('Please complete all fields'); return; }
+      const user = { name, email, role: 'member', createdAt: new Date().toISOString() };
+      localStorage.setItem('unizik_user', JSON.stringify(user));
+      modalBackdrop.style.display='none';
+      refreshAuthDisplay();
+      alert('Account created — you are now signed in (simulated).');
+    });
+
+    // Confirm login (simulated)
+    confirmLogin.addEventListener('click', () => {
+      const email = document.getElementById('loginEmail').value.trim();
+      const pw = document.getElementById('loginPassword').value.trim();
+      if(!email || !pw){ alert('Enter email and password'); return; }
+      // For demo, accept any email/password; in a real app, verify with backend
+      const user = { name: email.split('@')[0], email, role:'member' };
+      localStorage.setItem('unizik_user', JSON.stringify(user));
+      modalBackdrop.style.display='none';
+      refreshAuthDisplay();
+      alert('Signed in (simulated).');
+    });
+
+    // Close modal on clicking backdrop
+    modalBackdrop.addEventListener('click', (e) => {
+      if(e.target === modalBackdrop) modalBackdrop.style.display='none';
+    });
+
+    // Join Now button opens registration if guest
+    $('#joinNowBtn').addEventListener('click', () => {
+      if(!currentUser()){ registerBtn.click(); } else { location.href='#directory'; }
+    });
+
+    /* -----------------------
+       Protected actions: job apply, new thread, mentorship apply
+       - If user not logged in, show modal prompting register/login
+    -------------------------*/
+    function ensureAuthThen(action){
+      if(!currentUser()){
+        // highlight modal to register
+        modalTitle.textContent = 'Please Register to Continue';
+        registerForm.style.display='block';
+        loginForm.style.display='none';
+        modalBackdrop.style.display='flex';
+        return false;
+      }
+      action();
+      return true;
+    }
+
+    // Job apply buttons
+    $$('.job-apply').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const job = e.currentTarget.dataset.job;
+        ensureAuthThen(()=> {
+          alert(`Application sent for "${job}" (simulated). Admins will contact you via email.`);
+        });
+      });
+    });
+
+    // Mentorship apply
+    $('#mentorshipApplyBtn').addEventListener('click', () => {
+      const goals = document.getElementById('menteeGoals').value.trim();
+      ensureAuthThen(()=> {
+        if(!goals){ alert('Please describe your goals briefly'); return; }
+        alert('Mentorship application submitted (simulated). We will notify you by email.');
+        document.getElementById('menteeGoals').value = '';
+      });
+    });
+
+    // New thread (forum)
+    $('#newThreadBtn').addEventListener('click', () => {
+      ensureAuthThen(()=> {
+        const title = prompt('Thread title');
+        const body = prompt('Thread body / message');
+        if(title && body){
+          alert('Thread posted (simulated). It will appear in the forum for members.');
+        }
+      });
+    });
+
+    // Career apply from directory etc (search button)
+    $('#applyFilter').addEventListener('click', () => {
+      alert('Filter applied (demo). To contact alumni, please register and use the contact feature.');
+    });
+
+    /* -----------------------
+       Forum: categories + threads (localStorage)
+    -------------------------*/
+    (function forumModule(){
+      const DEFAULT_CATEGORIES = [
+        'Ethics','Logic','Metaphysics','Epistemology','Social and Political Philosophy',
+        'African Philosophy','Artificial Intelligence','Philosophy of Science','Entertainment'
+      ];
+
+      const categoryListEl = document.getElementById('categoryList');
+      const postsListEl = document.getElementById('postsList');
+      const forumModal = document.getElementById('forumModalBackdrop');
+      const openCreateCatBtn = document.getElementById('openCreateCategory');
+      const cancelCreateCat = document.getElementById('cancelCreateCategory');
+      const confirmCreateCat = document.getElementById('confirmCreateCategory');
+      const newCategoryName = document.getElementById('newCategoryName');
+      const newThreadBtn = document.getElementById('newThreadBtn');
+      const forumModalTitle = document.getElementById('forumModalTitle');
+      const createCategoryForm = document.getElementById('createCategoryForm');
+      const newThreadForm = document.getElementById('newThreadForm');
+      const threadTitle = document.getElementById('threadTitle');
+      const threadBody = document.getElementById('threadBody');
+      const threadCategory = document.getElementById('threadCategory');
+      const confirmNewThread = document.getElementById('confirmNewThread');
+      const cancelNewThread = document.getElementById('cancelNewThread');
+
+      // Storage helpers
+      function readStore(key, fallback){
+        try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch(e){ return fallback; }
+      }
+      function writeStore(key, val){ localStorage.setItem(key, JSON.stringify(val)); }
+
+      // Initialize categories
+      let categories = readStore('unizik_categories', DEFAULT_CATEGORIES);
+      let threads = readStore('unizik_threads', []);
+      let activeCategory = localStorage.getItem('unizik_active_category') || 'All';
+
+      function renderCategories(){
+        categoryListEl.innerHTML = '';
+        const allBtn = document.createElement('div');
+        allBtn.className = 'category-item' + (activeCategory==='All' ? ' active':'');
+        allBtn.textContent = 'All';
+        allBtn.onclick = ()=> { activeCategory='All'; localStorage.setItem('unizik_active_category',activeCategory); renderCategories(); renderThreads(); };
+        categoryListEl.appendChild(allBtn);
+
+        categories.forEach(cat => {
+          const d = document.createElement('div');
+          d.className = 'category-item' + (activeCategory===cat ? ' active':'');
+          d.textContent = cat;
+          d.onclick = ()=> { activeCategory=cat; localStorage.setItem('unizik_active_category',activeCategory); renderCategories(); renderThreads(); };
+          categoryListEl.appendChild(d);
+        });
+      }
+
+      function renderThreads(){
+        postsListEl.innerHTML = '';
+        const list = activeCategory==='All' ? threads : threads.filter(t=>t.category===activeCategory);
+        if(list.length===0){
+          postsListEl.innerHTML = '<div class="card small muted">No threads yet. Be the first to start a discussion.</div>';
+          return;
+        }
+        list.slice().reverse().forEach(t=>{
+          const el = document.createElement('div');
+          el.className = 'post card';
+          el.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center">
+            <h4 style="margin:0">${escapeHtml(t.title)}</h4>
+            <div class="small muted" style="font-size:0.8rem">Category: <strong>${escapeHtml(t.category)}</strong></div>
+          </div>
+          <div class="small muted">by ${escapeHtml(t.author||'Anonymous')} • ${t.replies? t.replies.length : 0} comments</div>
+          <p style="margin-top:10px">${escapeHtml(t.body)}</p>`;
+          postsListEl.appendChild(el);
+        });
+      }
+
+      function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[c]); }
+
+      // Open create category modal
+      openCreateCatBtn.addEventListener('click', ()=>{
+        forumModalTitle.textContent = 'Create Category';
+        createCategoryForm.style.display='block';
+        newThreadForm.style.display='none';
+        newCategoryName.value='';
+        forumModal.style.display='flex';
+      });
+
+      cancelCreateCat.addEventListener('click', ()=> forumModal.style.display='none');
+      confirmCreateCat.addEventListener('click', ()=>{
+        const name = newCategoryName.value.trim();
+        if(!name) { alert('Enter a category name'); return; }
+        if(categories.includes(name)){ alert('This category already exists'); return; }
+        categories.push(name);
+        writeStore('unizik_categories', categories);
+        forumModal.style.display='none';
+        renderCategories();
+      });
+
+      // New thread
+      newThreadBtn.addEventListener('click', ()=>{
+        forumModalTitle.textContent = 'New Thread';
+        createCategoryForm.style.display='none';
+        newThreadForm.style.display='block';
+        // populate categories select
+        threadCategory.innerHTML = '';
+        const all = ['General'].concat(categories);
+        all.forEach(c=>{ const o = document.createElement('option'); o.value=c; o.textContent=c; threadCategory.appendChild(o); });
+        threadTitle.value=''; threadBody.value='';
+        forumModal.style.display='flex';
+      });
+
+      cancelNewThread.addEventListener('click', ()=> forumModal.style.display='none');
+      confirmNewThread.addEventListener('click', ()=>{
+        if(!ensureAuthThen(()=>{})) return; // prompts to register if not logged in
+        const title = threadTitle.value.trim();
+        const body = threadBody.value.trim();
+        const category = threadCategory.value || 'General';
+        if(!title || !body){ alert('Please add a title and body'); return; }
+        const u = currentUser();
+        const t = { id: Date.now(), title, body, category, author: u? u.name : 'Anonymous', createdAt: new Date().toISOString(), replies:[] };
+        threads.push(t);
+        writeStore('unizik_threads', threads);
+        forumModal.style.display='none';
+        renderThreads();
+      });
+
+      // Close modal when clicking backdrop
+      forumModal.addEventListener('click', (e)=>{ if(e.target === forumModal) forumModal.style.display='none'; });
+
+      // initial render
+      renderCategories();
+      renderThreads();
+    })();
+
+    /* -----------------------
+       Forum highlights slider
+       - Reads threads from localStorage 'unizik_threads' (used by forumModule)
+       - Fallbacks to picking sample posts from DOM if storage empty
+       - Heuristic: sort by number of replies desc, then newest createdAt
+       - Shows up to 5 highlights, auto-advances, keyboard accessible
+    -------------------------*/
+    (function forumHighlights(){
+      const TRACK = document.getElementById('hlTrack');
+      const INDICATORS = document.getElementById('hlIndicators');
+      const PREV = document.getElementById('hlPrev');
+      const NEXT = document.getElementById('hlNext');
+      const VIEWPORT = document.getElementById('hlViewport');
+      const MAX = 5;
+      let slides = [];
+      let idx = 0;
+      let timer = null;
+
+      function readThreads(){
+        try{
+          const raw = localStorage.getItem('unizik_threads');
+          const arr = raw ? JSON.parse(raw) : [];
+          return Array.isArray(arr) ? arr : [];
+        }catch(e){ return []; }
+      }
+
+      function fallbackFromDOM(){
+        const nodes = Array.from(document.querySelectorAll('#postsList .post'));
+        return nodes.map((n,i)=>{
+          const title = n.querySelector('h4') ? n.querySelector('h4').textContent : `Thread ${i+1}`;
+          const body = n.querySelector('p') ? n.querySelector('p').textContent : '';
+          const meta = n.querySelector('.small.muted') ? n.querySelector('.small.muted').textContent : '';
+          return { id: null, title: title, body: body, replies:0, createdAt: Date.now() - i*1000*60, meta };
+        });
+      }
+
+      function buildSlides(){
+        const stored = readThreads();
+        let list = stored.length ? stored.slice() : fallbackFromDOM();
+        // ensure numeric replies and createdAt
+        list = list.map(t => ({ id: t.id || null, title: t.title || 'Untitled', body: t.body || '', replies: (t.replies? t.replies.length : (t.replies||0)), createdAt: t.createdAt ? new Date(t.createdAt).getTime() : (Date.now()) }));
+        // sort by replies desc then createdAt desc
+        list.sort((a,b)=> (b.replies - a.replies) || (b.createdAt - a.createdAt));
+        slides = list.slice(0, MAX);
+
+        // clear existing
+        TRACK.innerHTML = ''; INDICATORS.innerHTML = '';
+
+        if(slides.length === 0){
+          TRACK.innerHTML = `<div class="highlight-card"><p class="small muted">No highlights yet. Start a discussion to see trending topics here.</p></div>`;
+          return;
+        }
+
+        slides.forEach((s, i) => {
+          const el = document.createElement('div');
+          el.className = 'highlight-card';
+          el.setAttribute('role','group');
+          el.setAttribute('aria-roledescription','slide');
+          el.innerHTML = `
+            <div style="flex:1">
+              <div class="highlight-meta">${escapeHtml(s.meta || `${s.replies} replies`)}</div>
+              <h4 class="highlight-title">${escapeHtml(s.title)}</h4>
+              <p class="highlight-excerpt">${escapeHtml((s.body||'').split('\n').slice(0,2).join(' '))}</p>
+            </div>
+            <div style="min-width:120px;text-align:right">
+              <a class="btn" href="#forum" data-thread-id="${s.id || ''}">View</a>
+            </div>
+          `;
+          TRACK.appendChild(el);
+
+          const ind = document.createElement('button');
+          ind.className = 'hl-ind';
+          ind.setAttribute('aria-label', `Show highlight ${i+1}`);
+          ind.addEventListener('click', ()=> go(i));
+          INDICATORS.appendChild(ind);
+        });
+
+        // set initial transform and indicators state
+        update();
+      }
+
+      function escapeHtml(s){ return String(s||'').replace(/[&<>"]/, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c] || c); }
+
+      function update(){
+        const w = VIEWPORT.clientWidth || VIEWPORT.getBoundingClientRect().width;
+        TRACK.style.transform = `translateX(${-idx * w}px)`;
+        Array.from(INDICATORS.children).forEach((n,i)=> n.classList.toggle('active', i===idx));
+      }
+
+      function next(){ idx = (idx+1) % Math.max(1, slides.length); update(); }
+      function prev(){ idx = (idx-1 + Math.max(1, slides.length)) % Math.max(1, slides.length); update(); }
+      function go(i){ idx = i % Math.max(1, slides.length); update(); resetTimer(); }
+
+      function startTimer(){ if(timer) clearInterval(timer); timer = setInterval(next, 4000); }
+      function resetTimer(){ startTimer(); }
+      function stopTimer(){ if(timer) clearInterval(timer); timer = null; }
+
+      // Pause on hover or focus within viewport
+      VIEWPORT.addEventListener('mouseenter', stopTimer);
+      VIEWPORT.addEventListener('mouseleave', startTimer);
+      VIEWPORT.addEventListener('focusin', stopTimer);
+      VIEWPORT.addEventListener('focusout', startTimer);
+
+      NEXT.addEventListener('click', ()=>{ next(); resetTimer(); });
+      PREV.addEventListener('click', ()=>{ prev(); resetTimer(); });
+
+      document.addEventListener('keydown', (e)=>{
+        if(document.activeElement && document.activeElement.closest && document.activeElement.closest('.highlights-viewport')) return; // avoid intercepting when focus inside
+        if(e.key === 'ArrowRight') { next(); resetTimer(); }
+        else if(e.key === 'ArrowLeft') { prev(); resetTimer(); }
+      });
+
+      // handle responsive resize to keep transform correct
+      window.addEventListener('resize', update);
+
+      // initial build
+      buildSlides();
+      startTimer();
+
+      // Rebuild when threads storage changes (other tabs) or when forum posts updated
+      window.addEventListener('storage', (e)=>{ if(e.key === 'unizik_threads') { buildSlides(); } });
+    })();
+
+    // Newsletter subscribe (demo)
+    $('#subscribeBtn').addEventListener('click', () => {
+      const email = $('#newsletterEmail').value.trim();
+      if(!email){ alert('Enter your email to subscribe'); return; }
+      alert('Subscribed (simulated). Thank you!');
+      $('#newsletterEmail').value='';
+    });
+
+    /* -----------------------
+       Carousel logic
+    -------------------------*/
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const indicators = Array.from(document.querySelectorAll('.indicator'));
+    let idx = 0;
+    function show(i){
+      slides.forEach((s,j)=> s.classList.toggle('active', j===i));
+      indicators.forEach((ind,j)=> ind.classList.toggle('active', j===i));
+    }
+    document.getElementById('nextSlide').addEventListener('click', ()=> { idx = (idx+1) % slides.length; show(idx); });
+    document.getElementById('prevSlide').addEventListener('click', ()=> { idx = (idx-1+slides.length) % slides.length; show(idx); });
+    indicators.forEach(ind => ind.addEventListener('click', (e)=>{ idx = Number(e.target.dataset.i); show(idx); }));
+
+    // Auto advance
+    let autoTimer = setInterval(()=> { idx = (idx+1) % slides.length; show(idx); }, 4500);
+    // Pause on hover
+    slides.forEach(s => {
+      s.addEventListener('mouseenter', ()=> clearInterval(autoTimer));
+      s.addEventListener('mouseleave', ()=> autoTimer = setInterval(()=>{ idx = (idx+1) % slides.length; show(idx); }, 4500));
+    });
+
+    /* -----------------------
+       Small convenience: show/hide nav when scrolling up/down (optional)
+    -------------------------*/
+    let lastScroll = 0;
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', ()=> {
+      const st = window.scrollY || 0;
+      if(st > 80 && st > lastScroll) header.style.transform = 'translateY(-80px)';
+      else header.style.transform = 'translateY(0)';
+      lastScroll = st;
+    });
+
+    // On load: show auth state
+    refreshAuthDisplay();
+
+    // Bento menu toggler (defensive)
+    (function bentoToggler(){
+      try{
+        const bento = document.querySelector('.header-inner .bento');
+        if(!bento) return;
+        const btn = bento.querySelector('.bento-btn');
+        const menu = bento.querySelector('.bento-menu');
+        if(!btn || !menu) return;
+
+        // Simple, resilient toggle — falls back to basic class toggle if focus-trap setup fails
+        let lastFocused = null;
+
+        function open(){
+          try{
+            // ensure menu is visible (fallback for cases where CSS is overridden)
+            menu.style.display = 'block';
+            // allow layout then add class
+            requestAnimationFrame(()=>{
+              bento.classList.add('open');
+              btn.setAttribute('aria-expanded','true');
+            });
+            lastFocused = document.activeElement;
+            // focus first link if present
+            const first = menu.querySelector('a, button');
+            if(first && typeof first.focus === 'function') first.focus();
+            document.addEventListener('keydown', handleKeydown);
+            console.debug('bento: opened');
+          }catch(err){ console.warn('bento open error', err); }
+        }
+
+        function close(){
+          try{
+            bento.classList.remove('open');
+            btn.setAttribute('aria-expanded','false');
+            // hide mobile submenus defensively
+            menu.querySelectorAll('.bento-submenu').forEach(sm => sm.style.display = 'none');
+            menu.querySelectorAll('.bento-sub-toggle').forEach(bt => bt.setAttribute('aria-expanded','false'));
+            // remove inline display after transition completes to allow CSS to control layout
+            setTimeout(()=>{ try{ menu.style.display = ''; }catch(e){} }, 220);
+            if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+            lastFocused = null;
+            document.removeEventListener('keydown', handleKeydown);
+            console.debug('bento: closed');
+          }catch(err){ console.warn('bento close error', err); }
+        }
+
+        function handleKeydown(e){
+          if(e.key === 'Escape') { close(); }
+          // keep simple Tab trap: if focus would leave menu, bring it back
+          if(e.key === 'Tab'){
+            const focusables = Array.from(menu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])')).filter(n=>!n.hasAttribute('disabled'));
+            if(focusables.length === 0) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length-1];
+            if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+            else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+          }
+        }
+
+  // Use both pointerdown and click to ensure responsiveness across touch and pointer devices
+  btn.addEventListener('pointerdown', (ev)=>{ ev.preventDefault(); ev.stopPropagation(); bento.classList.contains('open') ? close() : open(); });
+  btn.addEventListener('click', (ev)=>{ ev.stopPropagation(); bento.classList.contains('open') ? close() : open(); });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e)=>{ if(!bento.contains(e.target)) close(); });
+      }catch(err){
+        // if anything unexpected happens, gracefully no-op but keep bento visible
+        console.warn('bento toggler error', err);
+      }
+    })();
+
+    /* -----------------------
+       Reveal-on-scroll animations (IntersectionObserver)
+    -------------------------*/
+    (function revealOnScroll(){
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting){
+            en.target.classList.add('visible');
+            observer.unobserve(en.target);
+          }
+        });
+      },{ threshold: 0.12 });
+
+      // Target common elements
+      const targets = Array.from(document.querySelectorAll('.card, .post, .person-card, .slide .hero-inner'));
+      targets.forEach(t=>{ t.classList.add('reveal'); observer.observe(t); });
+    })();
+  </script>
+
+  <!-- ROUTER: treat each <section id="..."> as a "page" with unique hash URLs -->
+  <script>
+    (function(){
+      const sections = Array.from(document.querySelectorAll('section[id]'));
+
+      function titleFromId(id){
+        if(!id) return 'Home - UNIZIK Philosophy Alumni Network';
+        // prettify id: "board-of-trustees" -> "Board Of Trustees"
+        const title = id.replace(/[-_]/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+        return `${title} - UNIZIK Philosophy Alumni Network`;
+      }
+
+      function showSection(id){
+        // If asking for the home/hero route, show the full page (hero + sections)
+        if(!id || id === 'hero'){
+          sections.forEach(s => s.style.display = 'block');
+          document.title = 'Home - UNIZIK Philosophy Alumni Network';
+          // keep the hash friendly
+          history.replaceState(null, '', location.pathname + '#hero');
+          // scroll to top smoothly when allowed
+          const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if(!prefersReduced){ window.scrollTo({ top: 0, behavior: 'smooth' }); }
+          else { window.scrollTo(0,0); }
+          return;
+        }
+
+        // otherwise show only the requested section (single-section view)
+        sections.forEach(s => {
+          s.style.display = (s.id === id) ? 'block' : 'none';
+        });
+        document.title = titleFromId(id);
+        // set hash without adding history entry
+        history.replaceState(null, '', location.pathname + '#' + id);
+        // scroll to top for the "page" with smooth behavior when allowed
+        const el = document.getElementById(id);
+        if(el){
+          const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if(!prefersReduced){ el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+          else { window.scrollTo(0,0); }
+        } else { window.scrollTo(0,0); }
+      }
+
+      function route(){
+        let h = location.hash.replace(/^#\/?/, '');
+        if(!h || h==='') h = 'hero';
+        const target = document.getElementById(h);
+        if(target){
+          showSection(h);
+        } else {
+          // fallback to hero if id not found
+          showSection('hero');
+        }
+      }
+
+      // wire up internal anchors so navigation uses pushState and route()
+      document.addEventListener('DOMContentLoaded', () => {
+  // show all sections initially (hero + content) so homepage appears as a normal long page
+  sections.forEach(s => { s.style.display = 'block'; });
+
+        // intercept clicks on in-page anchors
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+          a.addEventListener('click', (e) => {
+            const href = a.getAttribute('href');
+            if(!href || !href.startsWith('#')) return;
+            e.preventDefault();
+            const id = href.replace(/^#\/?/, '').replace('#','') || 'hero';
+            if(document.getElementById(id)){
+              history.pushState(null, '', location.pathname + '#' + id);
+              route();
+            } else {
+              // if not found, go to hero
+              history.pushState(null, '', location.pathname + '#hero');
+              route();
+            }
+          });
+        });
+
+        // support back/forward
+        window.addEventListener('popstate', route);
+
+        // keyboard left/right to control carousel (if present)
+        document.addEventListener('keydown', (e) => {
+          if(e.key === 'ArrowRight'){
+            const next = document.getElementById('nextSlide');
+            if(next) next.click();
+          } else if(e.key === 'ArrowLeft'){
+            const prev = document.getElementById('prevSlide');
+            if(prev) prev.click();
+          }
+        });
+
+        // initial route
+        route();
+      });
+    })();
+  </script>
+
+</body>
+</html>
